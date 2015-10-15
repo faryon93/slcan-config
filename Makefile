@@ -1,2 +1,2 @@
 all: slcan_config.c
-	gcc --std=gnu99 -o slcan_config $<
+	gcc -O2 --std=gnu99 -o slcan_config $<
