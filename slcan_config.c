@@ -7,6 +7,8 @@
 #include <getopt.h>
 #include <unistd.h>
 #include <errno.h>
+#include "slcan.h"
+
 
 void print_usage(char *prog)
 {
@@ -54,9 +56,8 @@ int main(int argc, char *argv[])
 
 	// configure a new baudrate
 	if (bitrate >= 0 && bitrate <= 8) {
-		if (ioctl (fd, 22, bitrate) < 0) {
-			printf("error: %d\n", errno);
-			perror("ioctl SLCAN_SET_BITRT");
+		if (ioctl (fd, SLCAN_SET_BAUDRATE, bitrate) < 0) {
+			perror("ioctl SLCAN_SET_BAUDRATE");
 			goto err;
 		}
 	}
